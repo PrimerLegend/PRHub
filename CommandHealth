@@ -1,0 +1,37 @@
+package org.antihunger.mc.antihunger;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import static org.antihunger.mc.antihunger.EventHunger.health;
+
+public class CommandHealth implements CommandExecutor {
+    public AntiHunger plugin;
+    public CommandHealth(AntiHunger plugin) {
+        this.plugin = plugin;
+    }
+
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage("§cOnly Players!");
+            return true;
+        }
+        Player p = (Player)sender;
+        if(!sender.hasPermission("antihunger.autohealth")){
+            p.sendTitle("§cError", "§7You do not have permissions", 8, 10, 8);
+            return true;
+        }
+        if (health == false) {
+            p.sendTitle("§aAntiDamage", "§aSuccessful Enabled!", 8, 15, 8);
+            health = true;
+        } else if (health == true) {
+            p.sendTitle("§aAntiDamage", "§cSuccessful Disabled!", 8, 15, 8);
+            health = false;
+        }
+        return false;
+    }
+}
