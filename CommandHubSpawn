@@ -1,0 +1,51 @@
+package org.antihunger.mc.antihunger;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+
+public class CommandHubSpawn implements CommandExecutor {
+    private AntiHunger plugin;
+
+    public CommandHubSpawn(AntiHunger plugin){
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender s, Command cmd, String label, String[] args) {
+        Player player = (Player)s;
+        if(!cmd.getName().equalsIgnoreCase("spawn")) return true;
+        if(!player.hasPermission("antihunger.spawn")){
+            player.sendTitle("§cError", "§7You do not have permissions", 8, 10, 8);
+            return true;
+        }
+
+        if(!(s instanceof Player)){
+            s.sendMessage("§cOnly Players!");
+            return true;
+        }
+
+
+        if(args.length != 0){
+            player.sendTitle("§cWarning", "§7Use §c/spawn", 8, 10, 8);
+            return true;
+        }
+
+
+        double x = plugin.getConfig().getDouble("spawn.x");
+        double y = plugin.getConfig().getDouble("spawn.y");
+        double z = plugin.getConfig().getDouble("spawn.z");
+        float yaw = (float) plugin.getConfig().getDouble("spawn.yaw");
+        float pitch = (float) plugin.getConfig().getDouble("spawn.pitch");
+
+        Location location = new Location(Bukkit.getWorld("world"), x, y, z, yaw, pitch);
+
+        player.teleport(location);
+        player.sendTitle("§aTeleport", "§7You teleported to spawn", 8, 15, 8);
+        return true;
+    }
+}
