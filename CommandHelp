@@ -1,0 +1,28 @@
+package org.antihunger.mc.antihunger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+public class CommandHelp implements CommandExecutor {
+    public AntiHunger plugin;
+    public CommandHelp(AntiHunger plugin) {
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        sender.sendMessage(ChatColor.GOLD + "[AntiHunger] Commands");
+        sender.sendMessage(ChatColor.GOLD + "");
+        sender.sendMessage(ChatColor.GOLD + "/autohealth - Disabling damage taking. ");
+        sender.sendMessage(ChatColor.GOLD + "/autofeed - Disabling hunger. ");
+        sender.sendMessage(ChatColor.GOLD + "/antihunger - Command info. ");
+        sender.sendMessage(ChatColor.GOLD + "/sethubspawn - Create hub spawn. ");
+        sender.sendMessage(ChatColor.GOLD + "/spawn - Teleport to hub spawn. ");
+        sender.sendMessage(ChatColor.GOLD + "");
+        sender.sendMessage(ChatColor.GOLD + "Version - 1.0");
+        sender.sendMessage(ChatColor.GOLD + "Author - Primer_Legend");
+        return false;
+    }
+}
