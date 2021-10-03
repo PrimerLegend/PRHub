@@ -1,0 +1,81 @@
+package org.antihunger.mc.antihunger;
+
+import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+
+
+public class EventHunger implements Listener {
+    public static boolean health;
+    public static boolean feed;
+
+    @EventHandler
+    public void OnHunger(FoodLevelChangeEvent e) {
+        Player p = (Player) e.getEntity();
+        if (e.getFoodLevel() == 19.5) {
+            e.setCancelled(true);
+        }
+        if (e.getFoodLevel() != 20) {
+            e.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public boolean onEntityDamageEvent(final EntityDamageEvent e) {
+        if (health == true) {
+            if (!(e.getEntity() instanceof Player)) {
+                return false;
+            }
+            Player p = (Player) e.getEntity();
+            if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.DROWNING) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.FIRE) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.HOT_FLOOR) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.LAVA) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.POISON) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.MAGIC) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.WITHER) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.THORNS) {
+                e.setCancelled(true);
+            }
+            if (e.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL) {
+                e.setCancelled(true);
+            }
+
+        }
+        else if (health == false) {
+            return true;
+        }
+
+        return false;
+    }
+}
